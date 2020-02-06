@@ -15943,4 +15943,26 @@ const zipDB = {
   }
 };
 
+
+// Add new available providers category to each zip code
+Object.keys(zipDB).forEach(function(key) {
+  zipDB[key]['providers'] = [];
+  });
+
+// Create object (dict) of providers and their corresponding zips
+const provider_zips = {'Housing_Now':['90001', '95035'], 'test':['90001', '95035']}
+
+// Add providers to zip codes that they serve
+for (const [provider, zips_array] of Object.entries(provider_zips)) {
+  zips_array.forEach(function(zip_code) {
+    try {
+		zipDB[zip_code]['providers'].push(provider);
+    }
+    catch {
+      //console.error('error');
+    }
+  });
+};
+
+
 export default zipDB;
